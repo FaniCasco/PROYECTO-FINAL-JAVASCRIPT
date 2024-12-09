@@ -1,0 +1,415 @@
+/* General */
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 70px;
+
+
+}
+
+body:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: estrellas 20s linear infinite;
+  z-index: -1;
+}
+
+/* Contenedor del GIF */
+#contenedorMascota {
+  position: relative;
+  /* Cambia de absolute a relative */
+  
+  /* Ajusta según lo necesario */
+}
+
+#contenedorMascota img {
+  max-width: 150px;
+  height: auto;
+  justify-content: center;
+  display: flex;
+  margin: 0 auto 180px auto;
+
+}
+
+/* Formulario */
+#formulario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+#formulario label {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+#formulario input {
+  padding: 10px;
+  font-size: 18px;
+}
+
+@keyframes estrellas {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+/* Títulos */
+.tit-principal {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+  font-size: 50px;
+  color: #007bff;
+  font-family: "Silkscreen", sans-serif;
+  font-weight:600;
+  text-align: center;
+}
+
+
+
+#bienvenida {
+  font-size: 50px;
+  margin: 50px 0;
+  color: #0f9e22;
+  font-family: "Slackey", sans-serif;
+  font-weight: 400;
+  text-align: center;
+}
+
+.oculto {
+  display: none !important;
+  /* Asegura que siempre se aplique */
+}
+
+/* Botones */
+.button {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  padding: 20px 30px;
+  background: linear-gradient(45deg, #fa4838, #ff9472);
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  background-color: #0056b3;
+}
+
+#botonIniciar {
+  /* Centramos en la pantalla */
+  display: block;
+  margin: 0 auto -20px auto;
+}
+
+
+/* Botón "Siguiente" centrado */
+#botonSiguienteContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#botonSiguiente-2 {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  padding: 15px 25px;
+  background: linear-gradient(45deg, #fa4838, #ff9472);
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+
+/**/
+
+#infopag {
+  text-align: center;
+  margin-top: 40px;
+  color: #fff;
+  font-family: "Slackey", sans-serif;
+}
+
+#formInicio {
+  text-align: center;
+  margin-top: 40px;
+  font-family: "Slackey", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#nombreJugador {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+
+/* Resultado */
+#resultado {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #fa4838;
+}
+
+/* Transiciones */
+.transicion {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.mostrar {
+  opacity: 1;
+}
+
+/*juego 1*/
+/* Centrado del contenido */
+#contenedorMinijuego1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Espaciado del título y elementos */
+#contenedorMinijuego1 h2 {
+  margin-top: 1rem;
+  font-family: "Slackey", sans-serif;
+}
+
+#contenedorMinijuego1 .mb-3 {
+  margin-bottom: 1rem;
+}
+
+#contenedorMascotaMinijuego img {
+  max-width: 200px;
+  height: auto;
+}
+
+#mensajeSuma {
+  color: #4cfc5b;
+  font-size: 1.5rem;
+  font-family: "Slackey", sans-serif;
+  opacity: 1;
+}
+
+
+/*juego 2***/
+
+
+#contenedorMinijuego2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: auto;
+  height: 100vh;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: auto;
+  /* Espacio para que el footer no cubra */
+}
+
+#contenedorMinijuego2 h2 {
+  text-align: center;
+  font-size: 2rem;
+  font-family: "Slackey", sans-serif;
+  margin-top: 20px;
+}
+
+.parrafo-2 {
+
+  font-size: 2rem;
+
+}
+
+/*minijuego 3*/
+#contenedorMinijuego3 {
+  text-align: center;
+  padding: 20px;
+}
+
+.oculto {
+  display: none !important;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+/* Estilos de la carta */
+.carta {
+  width: 200px;
+  height: 200px;
+  perspective: 1000px;
+  margin: 15px;
+}
+
+.carta-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+
+.carta-frente,
+.carta-detras {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.carta-frente {
+  background-color: #fff;
+  z-index: 2;
+}
+
+.carta-detras {
+  background-color: #f8f9fa;
+  transform: rotateY(180deg);
+}
+
+.carta.volteada .carta-inner {
+  transform: rotateY(180deg);
+}
+
+.oculto {
+  display: none !important;
+}
+
+/*minijuego 3*/
+#contenedorMinijuego3 h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 1rem;
+  font-family: "Slackey", sans-serif;
+}
+
+/* Estilo para el área de búsqueda */
+.area-busqueda {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  position: relative;
+}
+
+.objeto {
+  width: 100px;
+  height: 100px;
+  background-color: #eee;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.objeto:hover {
+  transform: scale(1.1);
+}
+
+.objeto.mascota {
+  background-color: #f8d7da;
+}
+
+
+
+.oculto {
+  display: none !important;
+}
+
+.area-busqueda {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.arbol {
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid transparent;
+  transition: transform 0.3s;
+}
+
+.arbol:hover {
+  transform: scale(1.1);
+  border-color: green;
+}
+
+.img-fluid {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.mascota-encontrada {
+  border-color: gold;
+  transform: scale(1.2);
+}
+
+
+
+/* Footer */
+.footer {
+  background-color: #222;
+  color: #fff;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 0.9rem;
+  font-family: 'Poppins', sans-serif;
+  width: 100vw;
+  position: fixed;
+  /* Cambia de fixed a relative */
+  bottom: 0;
+  left: 0;
+}
+
+
+.footer p {
+  margin: 0;
+
+}

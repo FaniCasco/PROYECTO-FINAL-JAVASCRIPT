@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juego</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+  <!-- Fuentes de Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Silkscreen:wght@400;700&family=Slackey&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!--  -->
+  <div class="main-content">
+    <header>
+      <h1 class="tit-principal text-center">¡Bienvenidos al Juego!</h1>
+
+      <!-- Contenedor de inicio (antes de empezar el juego) -->
+      <div id="contenedorInicio">
+        <h2 id="infopag">Por favor, ingresa tu nombre para comenzar:</h2>
+        <form id="formInicio" onsubmit="registrarNombre(event)">
+          <label for="nombreJugador">Tu nombre:</label>
+          <input type="text" id="nombreJugador" placeholder="Escribe tu nombre" required>
+          <br><br>
+          <input type="submit" class="button btn btn-primary" value="Empezar">
+        </form>
+
+        <!-- Eliminar o desactivar el GIF, ya no lo mostramos aquí -->
+        <div id="contenedorMascota" class="text-center">
+          <img src="./img/mascota-animada.gif" alt="GIF de perrito" class="img-fluid">
+        </div>
+      </div>
+
+      <!-- Contenedor de bienvenida que se muestra después de ingresar el nombre -->
+      <div id="contenedorBienvenida" class="oculto">
+        <h2 id="bienvenida"></h2>
+        <button class="button btn btn-success" id="botonIniciar" onclick="mostrarMinijuego1();">Juego n°1</button>
+      </div>
+
+      <!-- Contenedor de Minijuego 1 -->
+      <div id="contenedorMinijuego1" class="oculto text-center">
+        <h2>Juego 1: ¡Resuelve estos cálculos!</h2>
+
+        <div class="mb-3">
+          <p>¿Cuánto es <span id="num1"></span> + <span id="num2"></span>?</p>
+          <input type="number" id="respuestaSuma" placeholder="Escribe tu respuesta">
+          <button class="button btn btn-primary" onclick="verificarSuma()">Enviar</button>
+        </div>
+
+        <p id="mensajeSuma" class="font-weight-bold"></p>
+        <button class="button btn btn-success oculto" id="botonSiguiente-1"
+          onclick="pasarAlSiguienteJuego()">Siguiente</button>
+      </div>
+
+      <!-- Contenedor de Minijuego 2 -->
+      <div id="contenedorMinijuego2" class="oculto">
+        <h2>Juego 2: ¿Dónde está la mascota?</h2>
+        <p>Haz clic en una casa para encontrar a la mascota escondida.</p>
+
+        <div class="d-flex justify-content-center align-items-center flex-wrap">
+          <!-- Cartas de las casas -->
+          <div class="carta mx-2" onclick="revelarCarta(0)">
+            <div class="carta-inner" id="carta-0">
+              <div class="carta-frente">
+                <img src="img/casa-1.png" alt="Casa 1" class="img-fluid">
+              </div>
+              <div class="carta-detras">
+                <img src="img/interior-1.png" alt="Interior Casa 1" class="img-fluid">
+              </div>
+            </div>
+          </div>
+
+          <div class="carta mx-2" onclick="revelarCarta(1)">
+            <div class="carta-inner" id="carta-1">
+              <div class="carta-frente">
+                <img src="img/casa-2.png" alt="Casa 2" class="img-fluid">
+              </div>
+              <div class="carta-detras">
+                <img src="img/interior-2.png" alt="Interior Casa 2" class="img-fluid">
+              </div>
+            </div>
+          </div>
+
+          <div class="carta mx-2" onclick="revelarCarta(2)">
+            <div class="carta-inner" id="carta-2">
+              <div class="carta-frente">
+                <img src="img/casa-3.png" alt="Casa 3" class="img-fluid">
+              </div>
+              <div class="carta-detras">
+                <img src="img/interior-3.png" alt="Interior Casa 3" class="img-fluid">
+              </div>
+            </div>
+          </div>
+
+          <div class="carta mx-2" onclick="revelarCarta(3)">
+            <div class="carta-inner" id="carta-3">
+              <div class="carta-frente">
+                <img src="img/casa-4.png" alt="Casa 4" class="img-fluid">
+              </div>
+              <div class="carta-detras">
+                <img src="img/interior-4.png" alt="Interior Casa 4" class="img-fluid">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p id="mensaje-2" class="mt-3 font-weight-bold"></p>
+        <button class="btn btn-success " id="botonSiguiente-2" onclick="siguienteMinijuego()">Siguiente</button>
+      </div>
+
+      <!-- Contenedor de Minijuego 3 -->
+      <div id="contenedorMinijuego3" class="oculto">
+        <h2>Juego 3: ¡Encuentra a la mascota perdida!</h2>
+        <p>Haz clic en un árbol para buscar a la mascota. Tienes 3 intentos.</p>
+
+        <div id="areaBusqueda" class="d-flex justify-content-center align-items-center">
+          <!-- Árboles -->
+          <div class="arbol mx-2" onclick="buscarMascota(event, 0)">
+            <img src="img/arbol-1.png" alt="Árbol 1" class="img-fluid">
+          </div>
+          <div class="arbol mx-2" onclick="buscarMascota(event, 1)">
+            <img src="img/arbol-2.png" alt="Árbol 2" class="img-fluid">
+          </div>
+          <div class="arbol mx-2" onclick="buscarMascota(event, 2)">
+            <img src="img/arbol-3.png" alt="Árbol 3" class="img-fluid">
+          </div>
+          <div class="arbol mx-2" onclick="buscarMascota(event, 3)">
+            <img src="img/arbol-4.png" alt="Árbol 4" class="img-fluid">
+          </div>
+          <div class="arbol mx-2" onclick="buscarMascota(event, 4)">
+            <img src="img/arbol-5.png" alt="Árbol 5" class="img-fluid">
+          </div>
+        </div>
+
+        <p id="mensajeJuego3" class="mt-3 font-weight-bold"></p>
+        <button class="btn btn-warning oculto" id="botonReiniciar" onclick="reiniciarJuego3()">Reiniciar</button>
+        <button class="btn btn-success oculto" id="botonVolverInicio" onclick="volverInicio()">Volver al Inicio</button>
+      </div>
+    </header>
+    </main>
+  </div>
+  <!-- Contenedor del GIF de la mascota -->
+
+
+
+
+
+  <!-- Footer -->
+  <footer class="footer text-center mt-5">
+    <p>&copy; 2024 Mi Juego | Desarrollado con ❤️ por Fani Mariel Casco</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+
+</html>
