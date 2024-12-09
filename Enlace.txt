@@ -1,0 +1,5 @@
+#Este es el repositorio de github
+https://github.com/FaniCasco/PROYECTO-FINAL-JAVASCRIPT/tree/main
+
+#Este es el juego desplegado en Vercel
+https://minijuegos.vercel.app/
