@@ -205,7 +205,20 @@ body:after {
 
 /* Espaciado del título y elementos */
 #contenedorMinijuego1 h2 {
-  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  margin: 10vh auto;
+  font-size: 2rem;
+  font-family: "Slackey", sans-serif;
+}
+
+#contenedorMinijuego1 .mb-3 {
+  margin-bottom: 1rem;
+}
+
+#contenedorMascotaMinijuego img {
+  max-width: 200px;
+  height: auto;
   font-family: "Slackey", sans-serif;
 }
 
@@ -236,18 +249,19 @@ body:after {
   align-items: center;
   gap: auto;
   height: 100vh;
-  margin: auto;
+  margin: -40px auto;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: auto;
+  
   /* Espacio para que el footer no cubra */
 }
 
 #contenedorMinijuego2 h2 {
-  text-align: center;
-  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  margin: 30px auto;
+  font-size: 1.6rem;
   font-family: "Slackey", sans-serif;
-  margin-top: 20px;
 }
 
 .parrafo-2 {
@@ -258,12 +272,25 @@ body:after {
 
 /*minijuego 3*/
 #contenedorMinijuego3 {
-  text-align: center;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: auto;
+  height: 100vh;
+  margin: -40px auto;
+
+}
+#areaBusqueda {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  font-size: 1.6rem;
+  font-family: "Slackey", sans-serif;
 }
 
 .oculto {
-  display: none !important;
+  display: none;
 }
 
 img {

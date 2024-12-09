@@ -10,14 +10,13 @@ const interiores = ["img/interior-1.png", "img/interior-2.png", "img/interior-3.
 const interiorConMascota = "img/interiorMascota.png";
 
 // Variables para la lógica del juego 3
-let mascotaPosicion = Math.floor(Math.random() * 5); // La mascota estará en una de las 5 posiciones
-let intentosRestantes = 3; // El jugador tiene 3 intentos
+let mascotaPosicion = Math.floor(Math.random() * 4); // Posición aleatoria
+let intentosRestantes = 2; // Solo dos intentos permitidos
 
 /********************************************************************************************* */
 // Inicializar el juego al cargar la página
 window.onload = inicializarJuego;
 
-// Función para registrar el nombre del jugador
 // Función para registrar el nombre del jugador
 function registrarNombre(event) {
   event.preventDefault(); // este evento es para evitar que se recargue la página
@@ -29,9 +28,14 @@ function registrarNombre(event) {
 
   // Mostrar el contenedor de bienvenida sin dejar espacio vacío
   document.getElementById("contenedorBienvenida").classList.remove("oculto");
-  document.getElementById("bienvenida").textContent = "Hola " + jugador + ", ¡Empecemos!";
+  document.getElementById("bienvenida").textContent = "¡Hola " + jugador + " !";
+  //agregamos un mensaje a la bienvenida
+  document.getElementById("bienvenida").innerHTML += "<br> <br> <p>¡Comencemos!.</p>";
+
+
 }
 
+/************************************************Minijuego 1********************************************* */
 // Función para mostrar el Minijuego 1
 function mostrarMinijuego1() {
   document.getElementById("contenedorBienvenida").classList.add("oculto"); // ocultar el contenedor de bienvenida
@@ -45,16 +49,19 @@ function mostrarMinijuego1() {
 }
 
 
-// Función para verificar la suma en Minijuego 1 y     
+// Función para verificar la suma   
 function verificarSuma() {
   let respuesta = parseInt(document.getElementById("respuestaSuma").value);
   const mensajeSuma = document.getElementById("mensajeSuma");
   const botonSiguiente = document.getElementById("botonSiguiente-1");
   const botonEnviar = document.querySelector("#contenedorMinijuego1 button.btn-primary");
 
+  //Si la respuesta es correcta, mostrar mensaje de acierto y pasar al siguiente juego
   if (respuesta === sumaCorrecta) {
-    mensajeSuma.textContent = "Respuesta correcta. ¡Puedes pasar al siguiente juego!";
-    mensajeSuma.style.color = "green";
+    mensajeSuma.textContent = "Correcto!. ";
+    //agregamos un parrafo mas
+    mensajeSuma.innerHTML += "<br> <p>¡Continúa al siguiente juego!.</p>";
+
 
     // Mostrar botón "Siguiente" y ocultar "Enviar"
     botonSiguiente.classList.remove("oculto");
@@ -67,6 +74,7 @@ function verificarSuma() {
 }
 
 
+/********************************************************************************************* */
 // Función para pasar al siguiente juego del Minijuego 1 a Minijuego 2
 function pasarAlSiguienteJuego() {
   document.getElementById("contenedorMinijuego1").classList.add("oculto");
@@ -74,6 +82,8 @@ function pasarAlSiguienteJuego() {
   inicializarJuego2(); // Inicializar el Minijuego 2
 }
 
+
+/*********************************************Minijuego 2************************************************ */
 // Función para inicializar el Juego 2
 function revelarCarta(indice) {
   const carta = document.getElementById(`carta-${indice}`);
@@ -95,6 +105,7 @@ function revelarCarta(indice) {
       mensaje.textContent = "¡Encontraste a la mascota! Puedes continuar.";
       mensaje.style.color = "green";
       mensaje.style.fontSize = "2rem";
+      mensaje.style.fontFamily = "Slackey, sans-serif";
       botonSiguiente.classList.remove("oculto");
       botonSiguiente.style.marginBottom = "30px";
     }, 600);
@@ -104,14 +115,16 @@ function revelarCarta(indice) {
     mensaje.style.color = "red";
 
     // Reiniciar juego si se alcanza el límite de intentos
-    if (intentosJuego2 >= 2) {
+    if (intentosJuego2 >= 3) {
       setTimeout(() => {
         mensaje.textContent = "Reinicializando juego...";
         reiniciarMinijuego2();
       }, 1000);
     }
+
   }
 }
+
 
 // Función para reiniciar el Minijuego 2
 function reiniciarMinijuego2() {
@@ -134,8 +147,7 @@ function reiniciarMinijuego2() {
 }
 
 
-
-
+/********************************************************************************************* */
 // Función para pasar al siguiente juego
 function siguienteMinijuego() {
   // Verificar si estamos en el juego 2
@@ -147,60 +159,61 @@ function siguienteMinijuego() {
 
 //******************************************/ Minijuego 3 ***************************************
 
-// Función para manejar la búsqueda
+// Función para manejar la búsqueda (Minijuego 3)
 function buscarMascota(event, posicion) {
-  const mensajeJuego3 = document.getElementById("mensajeJuego3");// selecciona el elemento con el id "mensajeJuego3"
-  const botonReiniciar = document.getElementById("botonReiniciar");// selecciona el elemento con el id "botonReiniciar"
-  const botonVolverInicio = document.getElementById("botonVolverInicio");// selecciona el elemento con el id "botonVolverInicio"
+  const mensajeJuego3 = document.getElementById("mensajeJuego3");
+  const botonReiniciar = document.getElementById("botonReiniciar");
+  const botonVolverInicio = document.getElementById("botonVolverInicio");
 
-  // Verificar si el jugador encontró la mascota
   if (posicion === mascotaPosicion) {
-    event.target.classList.add("mascota-encontrada");// agrega la clase "mascota-encontrada" al elemento que se hizo clic
-    event.target.innerHTML = `<img src="img/mascota.png" alt="Mascota encontrada" class="img-fluid">`;// cambia la imagen del elemento por la de la mascota
-    mensajeJuego3.textContent = "¡Felicidades! Encontraste a la mascota.";// muestra un mensaje de éxito
+    event.currentTarget.innerHTML = `<img src="img/mascota-animada.gif" alt="Mascota encontrada" class="img-fluid">`;
+    mensajeJuego3.textContent = "¡Felicidades! Encontraste a la mascota.";
     mensajeJuego3.style.color = "green";
-    botonVolverInicio.classList.remove("oculto"); // Mostrar botón de volver al inicio
+
+    desactivarCartas(); 
+    botonVolverInicio.classList.remove("oculto"); // Mostrar el botón de inicio
   } else {
-    intentosRestantes--; // decrementa el número de intentos restantes
-    if (intentosRestantes > 0) { // si quedan intentos restantes
-      mensajeJuego3.textContent = `No está aquí. Te quedan ${intentosRestantes} intentos.`;
-      mensajeJuego3.style.fontFamily = "Slackey", sans - serif;
-      mensajeJuego3.style.fontSize = "1rem";
+    intentosRestantes--;
+    if (intentosRestantes > 0) {
+      mensajeJuego3.textContent = `No está aquí. Te queda ${intentosRestantes} intento.`;
       mensajeJuego3.style.color = "red";
     } else {
       mensajeJuego3.textContent = "¡Perdiste! La mascota estaba en otro lugar.";
       mensajeJuego3.style.color = "red";
-      botonReiniciar.classList.remove("oculto"); // Mostrar botón de reiniciar
+      mostrarMascotaCorrecta();
+      desactivarCartas();
+      botonReiniciar.classList.remove("oculto"); 
     }
   }
 }
 
-// Función para reiniciar el juego 3
-
-function reiniciarJuego3() {
-  // Reiniciar variables
-  mascotaPosicion = Math.floor(Math.random() * 5);
-  intentosRestantes = 3;
-
-  // Reiniciar el mensaje y botones
-  const mensajeJuego3 = document.getElementById("mensajeJuego3");
-  const botonReiniciar = document.getElementById("botonReiniciar");
-  mensajeJuego3.textContent = "";
-  botonReiniciar.classList.add("oculto");
-
-  // Reiniciar el área de búsqueda
-  const arboles = document.querySelectorAll(".arbol");
-  arboles.forEach((arbol, index) => {
-    // Limpiar el estado de cada árbol
-    arbol.classList.remove("mascota-encontrada");
-
-    // Volver a establecer la imagen del árbol original
-    // Asegúrate de que las imágenes de los árboles sean las correctas. Puedo asumir que usas imágenes como "arbol-1.png", "arbol-2.png", etc.
-    arbol.innerHTML = `<img src="img/arbol-${index + 1}.png" alt="Árbol ${index + 1}" class="img-fluid;">`;
-  });
+// Función para mostrar la mascota correcta (Minijuego 3)
+function mostrarMascotaCorrecta() {
+  const cartaCorrecta = document.querySelectorAll(".arbol")[mascotaPosicion];
+  cartaCorrecta.innerHTML = `<img src="img/mascota-animada.gif" alt="Mascota encontrada" class="img-fluid">`;
 }
 
+function desactivarCartas() {
+  const cartas = document.querySelectorAll(".arbol");
+  cartas.forEach(carta => carta.onclick = null);
+}
 
+function reiniciarJuego() {
+  mascotaPosicion = Math.floor(Math.random() * 4);
+  intentosRestantes = 2;
+
+  const mensajeJuego3 = document.getElementById("mensajeJuego3");
+  const botonReiniciar = document.getElementById("botonReiniciar");
+  const cartas = document.querySelectorAll(".arbol");
+
+  cartas.forEach((carta, index) => {
+    carta.innerHTML = `<img src="img/arbol-${index + 1}.png" alt="Árbol ${index + 1}" class="img-fluid">`;
+    carta.onclick = (event) => buscarMascota(event, index);
+  });
+
+  mensajeJuego3.textContent = "";
+  botonReiniciar.classList.add("oculto");
+}
 // Función para volver al inicio (recargando la página)
 function volverInicio() {
   // Recargar la página
